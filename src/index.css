@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  /* Backgrounds */
+  --paper: #F8F9FA;
+  --paper-soft: #FFFFFF;
+  --paper-glass: rgba(255, 255, 255, 0.7);
+  
+  /* Text */
+  --ink: #1A1A2E;
+  --ink-soft: #6C757D;
+  
+  /* Borders */
+  --line: #E9ECEF;
+  --line-hover: #DEE2E6;
+  
+  /* Accent - Teal Gradient */
+  --accent: #2D5A4E;
+  --accent-soft: #4ECDC4;
+  --accent-gradient: linear-gradient(135deg, #2D5A4E 0%, #4ECDC4 100%);
+  
+  /* Highlights */
+  --coral: #FF6B6B;
+  --coral-soft: #FF8E8E;
+  
+  /* On Accent */
+  --on-accent: #FFFFFF;
+}
+
+.dark {
+  --paper: #0D1117;
+  --paper-soft: #161B22;
+  --paper-glass: rgba(22, 27, 34, 0.8);
+  --ink: #F0F6FC;
+  --ink-soft: #8B949E;
+  --line: #30363D;
+  --line-hover: #484F58;
+  --accent: #4ECDC4;
+  --accent-soft: #7EE8E0;
+  --coral: #FF8E8E;
+  --coral-soft: #FFB4B4;
+  --on-accent: #0D1117;
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-paper-soft: var(--paper-soft);
+  --color-paper-glass: var(--paper-glass);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-line-hover: var(--line-hover);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-on-accent: var(--on-accent);
+
+  --font-sans: "Instrument Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", "Georgia", serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", "Fira Code", ui-monospace, monospace;
+}
+
+/* Global resets and scrolling behaviors */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: var(--paper-glass);
+  backdrop-blur: 12px;
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient Border on Hover */
+.gradient-border {
+  position: relative;
+  background: var(--paper);
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--accent-gradient);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Button Primary with Gradient */
+.btn-primary {
+  background: var(--accent-gradient);
+  color: var(--on-accent);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(45, 90, 78, 0.3);
+}
+
+.dark .btn-primary:hover {
+  box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Glow Effect */
+.glow {
+  box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+}
+
+.glow:hover {
+  box-shadow: 0 0 30px rgba(78, 205, 196, 0.5);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Shimmer Loading Effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, var(--paper-soft) 25%, var(--line) 50%, var(--paper-soft) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Tailored fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(78, 205, 196, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(78, 205, 196, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-soft);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(78, 205, 196, 0.3);
+  color: var(--ink);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

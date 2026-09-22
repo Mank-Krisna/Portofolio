@@ -1,0 +1,6 @@
+{
+  "name": "Mank Krisna Chemistry Portfolio",
+  "description": "Interactive Chemistry and In Silico Molecular Docking portfolio of I Komang Bayu Kresna, S.Si., featuring custom simulators, calculators, and a server-side Gemini AI Lab Assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
